@@ -118,21 +118,120 @@ min(hotel_bookings$lead_time)
 
 mean(hotel_bookings$lead_time)
 
+####################
+library(ggplot2)
+library(palmerpenguins)
+data(penguins)
+View(penguins)
+
+ggplot(data = penguins) + geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g))
+
+ggplot(data=penguins, mapping=aes(x=flipper_length_mm, y=body_mass_g))+geom_point()
+
+ggplot(data=penguins)+geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g))
+
+hotel_bookings <- read.csv("hotel_bookings.csv")
+
+head(hotel_bookings)
+colnames(hotel_bookings)
+
+install.packages('ggplot2')
+library(ggplot2)
+
+ggplot(data = hotel_bookings) +
+  geom_point(mapping = aes(x = lead_time, y = children))
+
+ggplot(data = hotel_bookings) +
+  geom_point(mapping = aes(x = stays_in_weekend_nights, y = children))
 
 
+####################
+#color, size, and shape
+ggplot(data=penguins)+ geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, shape=species, color=species, size=species))
+
+#b and white w/ transparency
+ggplot(data=penguins)+ geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, alpha=species))
+
+#single color
+ggplot(data=penguins)+ geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g),color="purple")
+
+#smooth transition
+ggplot(data=penguins)+ geom_smooth(mapping=aes(x=flipper_length_mm, y=body_mass_g),color="purple")
+
+#geom_point + geom_smooth
+ggplot(data=penguins)+ geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g)) +
+  geom_smooth(mapping=aes(x=flipper_length_mm, y=body_mass_g))
+
+#geom_smooth + jitter
+ggplot(data=penguins)+ geom_smooth(mapping=aes(x=flipper_length_mm, y=body_mass_g)) +
+  geom_jitter(mapping=aes(x=flipper_length_mm, y=body_mass_g))
+
+#border color
+ggplot(data=penguins)+
+  geom_bar(mapping=aes(x=island,color=island))
+
+#fill color by species
+ggplot(data=penguins)+
+  geom_bar(mapping=aes(x=island, fill = species))
+
+#scatterplot for each species
+ggplot(data=penguins,aes(x=flipper_length_mm, y=body_mass_g)) + 
+  geom_point(aes(color=species))+
+  facet_wrap(~species)
+
+#bar chart by island and species
+ggplot(data=penguins)+
+  geom_bar(mapping=aes(x=species, fill=island))+
+  facet_wrap(~island)
+
+#scatter plots by sex and species
+ggplot(data=penguins)+
+  geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, color=species))+
+  facet_grid(sex~species)
+
+#scatter plots by sex
+ggplot(data=penguins)+
+  geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, color=species))+
+  facet_grid(~sex)
+
+head(hotel_bookings)
+
+ggplot(data = hotel_bookings) +
+  geom_bar(mapping = aes(x = distribution_channel))
+
+ggplot(data = hotel_bookings) +
+  geom_point(mapping = aes(x = lead_time, y = children))
 
 
+ggplot(data = hotel_bookings) +
+  geom_bar(mapping = aes(x = hotel, fill = market_segment))
+
+ggplot(data = hotel_bookings) +
+  geom_bar(mapping = aes(x = hotel)) +
+  facet_wrap(~market_segment)
 
 
+onlineta_city_hotels <- filter(hotel_bookings, 
+                               (hotel=="City Hotel" & 
+                                  hotel_bookings$market_segment=="Online TA"))
+
+View(onlineta_city_hotels)
 
 
+onlineta_city_hotels_v2 <- hotel_bookings %>%
+  filter(hotel=="City Hotel") %>%
+  filter(market_segment=="Online TA")
 
+View(onlineta_city_hotels_v2)
 
+ggplot(data = onlineta_city_hotels_v2) +
+  geom_point(mapping = aes(x = lead_time, y = children))
 
-
-  
-  
-
+##Annotation
+#naming the title of a scatterplot
+ggplot(data=penguins)+
+  geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, color=species))+
+  labs(title="Pemler Penguins: Body vs. Flipper Length")
 
 
 
