@@ -231,9 +231,35 @@ ggplot(data = onlineta_city_hotels_v2) +
 #naming the title of a scatterplot
 ggplot(data=penguins)+
   geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, color=species))+
-  labs(title="Pemler Penguins: Body vs. Flipper Length")
+  labs(title="Palmer Penguins: Body vs. Flipper Length")
 
+#include a subtitle
+ggplot(data=penguins)+
+  geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, color=species))+
+  labs(title="Palmer Penguins: Body vs. Flipper Length", subtitle = "Sample of 3 Penguins Species")
 
+#add a caption
+ggplot(data=penguins)+
+  geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, color=species))+
+  labs(title="Palmer Penguins: Body vs. Flipper Length", subtitle = "Sample of 3 Penguins Species",
+  caption = "Data collected by Dr. Kristen Gorman")
+
+#add a label with bold, sizing, and position
+ggplot(data=penguins)+
+  geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, color=species))+
+  labs(title="Palmer Penguins: Body vs. Flipper Length", subtitle = "Sample of 3 Penguins Species",
+       caption = "Data collected by Dr. Kristen Gorman")+
+       annotate("text", x=220, y=3500, label= "The Gentoos are the largest",
+           color = "purple", fontface = "bold", size = 4.5, angle = 25)
+
+p<-ggplot(data=penguins)+
+  geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, color=species))+
+  labs(title="Palmer Penguins: Body vs. Flipper Length", subtitle = "Sample of 3 Penguins Species",
+       caption = "Data collected by Dr. Kristen Gorman")
+
+#ggpplot as a varaible with annotation
+p+annotate("text", x=220, y=3500, label= "The Gentoos are the largest",
+           color = "blue", fontface = "bold", size = 4.5)
 
 
 
