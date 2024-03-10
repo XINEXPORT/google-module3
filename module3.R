@@ -262,4 +262,23 @@ p+annotate("text", x=220, y=3500, label= "The Gentoos are the largest",
            color = "blue", fontface = "bold", size = 4.5)
 
 
+ggsave("Three Penguin Species.png")
+
+
+####################
+
+install.packages("rmarkdown")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
